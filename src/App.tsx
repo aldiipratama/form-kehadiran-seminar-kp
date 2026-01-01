@@ -28,7 +28,7 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen items-center justify-center p-5 bg-background">
       <Card className="max-w-md w-full text-center gap-2">
         <CardHeader>
           <CardTitle className="text-2xl">
