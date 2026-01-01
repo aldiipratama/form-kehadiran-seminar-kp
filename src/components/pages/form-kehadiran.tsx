@@ -1,16 +1,16 @@
+import supabase from "@/lib/supabase";
 import { FormKehadiranSchema } from "@/schemas/form-kehadiran.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectValue } from "@radix-ui/react-select";
 import {
   BadgeCheck,
   BookMarkedIcon,
   Loader2,
-  School,
   Trash2,
-  User2,
+  User2
 } from "lucide-react";
 import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import SignatureCanvas from "react-signature-canvas";
 import { toast } from "sonner";
 import type z from "zod";
@@ -54,16 +54,6 @@ import {
   ItemTitle,
 } from "../ui/item";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "../ui/select";
-import supabase from "@/lib/supabase";
-import { useNavigate } from "react-router-dom";
 
 export default function Form() {
   const signatureRef = useRef<SignatureCanvas | null>(null);
@@ -126,7 +116,6 @@ export default function Form() {
           {
             nama_lengkap: data.nama_lengkap,
             npm: data.npm,
-            kelas: data.kelas,
             status_kehadiran: data.status_kehadiran,
             signature_url: publicUrlData.publicUrl,
           },
@@ -229,39 +218,6 @@ export default function Form() {
                           {field.value ? field.value.length : "0"}/9 Karakter
                         </span>
                       </div>
-                    </Field>
-                  )}
-                />
-
-                <Controller
-                  control={formKehadiran.control}
-                  name="kelas"
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel>Kelas</FieldLabel>
-                      <Select
-                        value={field.value}
-                        onValueChange={field.onChange}
-                      >
-                        <SelectTrigger>
-                          <div className="flex items-center gap-2">
-                            <School />
-                            <SelectValue placeholder="Pilih Kelas" />
-                          </div>
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Kelas</SelectLabel>
-                            <SelectItem value="A">A</SelectItem>
-                            <SelectItem value="B">B</SelectItem>
-                            <SelectItem value="C">C</SelectItem>
-                            <SelectItem value="D">D</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
                     </Field>
                   )}
                 />
@@ -375,18 +331,6 @@ export default function Form() {
                           <ItemTitle>NPM :</ItemTitle>
                           <ItemDescription>
                             {formKehadiran.getValues("npm")}
-                          </ItemDescription>
-                        </ItemContent>
-                      </Item>
-
-                      <Item>
-                        <ItemMedia>
-                          <BadgeCheck />
-                        </ItemMedia>
-                        <ItemContent>
-                          <ItemTitle>Kelas :</ItemTitle>
-                          <ItemDescription>
-                            {formKehadiran.getValues("kelas")}
                           </ItemDescription>
                         </ItemContent>
                       </Item>

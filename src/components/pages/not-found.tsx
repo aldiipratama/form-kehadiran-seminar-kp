@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export const NotFound = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen items-center p-5 justify-center bg-background">
       <Card className="max-w-md w-full text-center">
         <CardHeader>
           <CardTitle className="text-2xl">404 - Halaman Tidak Ditemukan</CardTitle>
